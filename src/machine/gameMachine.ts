@@ -30,7 +30,8 @@ export const machine: any = {
     },
     HALTED: {
         RESUME: GameState.IN_PROGRESS,
-        END: GameState.FINISHED,
+        END: GameState.IDLE,
+        WIN: GameState.FINISHED,
         ERROR: GameState.ERROR
     },
     FINISHED: {

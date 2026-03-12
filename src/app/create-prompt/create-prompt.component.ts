@@ -25,7 +25,7 @@ export class CreatePromptComponent  implements OnInit {
     const horizontal = this.userInputForm.get('horizontal')?.value ?? 4;
     const vertical = this.userInputForm.get('vertical')?.value  ?? 4;
 
-    if ((horizontal + vertical) < 2) {
+    if ((horizontal + vertical) < 2 || (horizontal * vertical) % 2 !== 0) {
       this.userInputForm.reset();
       return;
     }
