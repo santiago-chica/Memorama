@@ -1,20 +1,40 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Emojirama
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    
+    <h1>Juego de Emojirama</h1>
+    <h2>Por Santiago Garzón Chica</h2>
+
+    @if (isGameOn()) {
+      <ion-grid class="board">
+        <ion-row *ngFor="let row of cards" class="row">
+          <ion-col *ngFor="let card of row" class="card" [ngClass]="{ 'revealed': card.isRevealed(), 'matched': card.isMatched(), 'hidden': card.isHidden() }" (click)="clickCard(card)">
+            <p>{{card.getDisplay()}}</p>
+          </ion-col>
+        </ion-row>
+        <div class="lower">
+          <h3 class="attempts">Intentos: {{attempts}}</h3>
+          <ion-button (click)="finishAttempt()">Terminar intento</ion-button>
+        </div>
+      </ion-grid>
+      
+    } @else {
+      <div class="game-finished">
+      @if (hasWon()) {
+        <h1 class="victory-message">¡Ganaste! Con {{attempts}} intento(s)</h1>
+      }
+      <app-create-prompt (sendDimension)="startGame($event)"></app-create-prompt>
+      </div>
+    }
+
+    
   </div>
 </ion-content>

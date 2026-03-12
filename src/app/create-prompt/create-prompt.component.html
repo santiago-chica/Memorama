@@ -1,0 +1,14 @@
+<form [formGroup]="userInputForm" (ngSubmit)="submitForm()">
+  <div>
+      <label for="horizontal">X:</label>
+      <input type="number" id="horizontal" formControlName="horizontal" min="2">
+    
+      <label for="vertical">Y:</label>
+      <input type="number" id="vertical" formControlName="vertical" min="2">
+   
+  </div>
+  <ion-button type="submit">
+    Iniciar!
+  </ion-button>
+
+</form>
